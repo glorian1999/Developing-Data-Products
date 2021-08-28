@@ -1,0 +1,43 @@
+---
+title: "Developing Data Products Week 2 Assignment"
+author: "Xinyu GUO"
+date: "2021/8/28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This R markdown file is used to create a web page using R Markdown that features a map created with Leaflet, hosting webpage on either GitHub Pages, RPubs, or NeoCities. In addition, the webpage must contain the date that you created the document, and it must contain a map created with Leaflet.
+
+This leaflet is designed to show the longitude and latitude of each district in Beijing. 
+
+According to the statistical bulletin of Beijing's 2020 national economic and social development, by the end of 2020, the permanent resident population of Beijing was 21.536 million, including 18.65 million urban population.
+
+First we load the package and data
+```{r}
+library(leaflet)
+df <- read.csv('C:\\Users\\GUO\\Desktop\\beijingdata.csv',header=TRUE)
+```
+
+draw the map
+```{r}
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(
+    lat = df$lat, 
+    lng = df$long, 
+    popup = paste(df$popup, "<br>", "Population:", df$population),
+    clusterOptions = markerClusterOptions()) %>%
+  addCircleMarkers(radius = sqrt(df$population/10e3))
+```
+my_map<- my_map %>%
+addMarkers(lat=116.0000,lng=39.9300,popup="here")
+
+
+leaflet() %>%
+  addMarkers(lat=116,lng=39x
